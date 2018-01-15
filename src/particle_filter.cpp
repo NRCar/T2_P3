@@ -42,7 +42,7 @@ void ParticleFilter::init(double x, double y, double theta, double std[])
 		return;
 	}
 
-	num_particles = 100;
+	num_particles = 200;
 
 	double std_x = std[0];
 	double std_y = std[1];
@@ -264,9 +264,10 @@ void ParticleFilter::resample()
 		weights[i] = particles[i].weight;
 	}
 
+	discrete_distribution<int> weight_distru(weights.begin(), weights.end());
+
 	for (int i = 0; i < num_particles; ++i)
 	{
-		discrete_distribution<int> weight_distru(weights.begin(), weights.end());
 		new_particles[i] = particles[weight_distru(rand_gen)];
 	}
 
