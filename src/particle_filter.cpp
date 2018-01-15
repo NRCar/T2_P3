@@ -200,6 +200,7 @@ void ParticleFilter::updateWeights(double sensor_range, double std_landmark[],
 			const double dy = my - particles[i].y;
 			const double dist_sq = dx * dx + dy * dy;
 
+			// Use squares since sqrt is computationaly expensive
 			if (dist_sq < sensor_range_sq)
 			{
 
